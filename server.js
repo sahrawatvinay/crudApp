@@ -16,6 +16,10 @@ app.use(cors(corsOptions)); // Enables CORS with specified options
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded requests
 
+// routers
+const router = require("./routes/productRouter");
+app.use("/api/products", router);
+
 // Basic route for testing
 app.get("/", (req, res) => {
     res.json({ message: "Hello from CRUD API" });
