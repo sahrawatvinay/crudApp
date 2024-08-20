@@ -12,7 +12,6 @@ const sequelize = new Sequelize(
     {
         host: dbConfig.HOST, // Database host
         dialect: dbConfig.DIALECT, // Database dialect (MySQL in this case)
-        operatorsAliases: false, // Deprecated in Sequelize v5, can be removed or set to false
         pool: {
             max: dbConfig.pool.max, // Maximum number of connections in pool
             min: dbConfig.pool.min, // Minimum number of connections in pool
