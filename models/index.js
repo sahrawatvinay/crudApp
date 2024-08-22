@@ -47,5 +47,17 @@ db.sequelize.sync({ force: false })
         console.log("Database synchronized successfully.");
     });
 
+
+// 1 to many relation, review is the parent of products
+db.products.hasMany(db.reviews,{
+    foreignKey: "product_id",
+    as: "review" //name of table
+});
+
+db.reviews.belongsTo(db.products,{
+    foreignKey: "product_id",
+    as: "product"
+});
+
 // Export the db object for use in other parts of the application
 module.exports = db;
