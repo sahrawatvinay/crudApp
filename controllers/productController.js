@@ -1,5 +1,7 @@
+const { where } = require("sequelize");
 const db = require("../models");
 const Product = db.products;
+const Review = db.reviews;
 
 //CRUD Operations
 const addProduct = async (req, res) => {
@@ -41,11 +43,24 @@ const getPublishedProducts = async (req, res) => {
     res.status(200).send(products);
 }
 
+// relational get
+const getProductReviews = async (req, res) => {
+    const data = await Product.findAll({
+        include: [{
+            model: Review,
+            as: "review"
+        }],
+        where: { id: 1 }
+    });
+    res.status(200).send(data);
+};
+
 module.exports = {
     addProduct,
     getAllProducts,
     getSingleProduct,
     updateProduct,
     deleteProduct,
-    getPublishedProducts
+    getPublishedProducts,
+    getProductReviews
 };
